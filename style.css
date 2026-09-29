@@ -1,0 +1,838 @@
+/* ==========================================================================
+   Body Scent — Theme
+   โทนพรีเมียม เรียบหรู มินิมอล | ขาว-ครีม-เบจเข้ม + ทอง/บรอนซ์อ่อน
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+Thai:wght@400;500;600&family=Noto+Sans+Thai:wght@300;400;500&display=swap");
+
+/* ---------- Tokens ---------- */
+:root {
+  /* พื้นหลัง: ขาว → ครีม → เบจ */
+  --ivory: #fcfaf6;
+  --cream: #f4eee3;
+  --sand: #e6dccb;
+  --beige-deep: #a08c74;
+
+  /* ตัวอักษร / เส้น */
+  --ink: #2a2520;
+  --ink-soft: #5f564b;
+  --line: #cfc3b0;
+  --line-strong: #3a332b;
+
+  /* สีเน้น: ทอง/บรอนซ์อ่อน */
+  --gold: #b8945a;
+  --bronze: #8a6a3b; /* ใช้กับตัวอักษรเพื่อให้อ่านชัด */
+
+  /* สีประจำ mood (ใช้แตะเบาๆ เท่านั้น) */
+  --mood-fresh: #2f5d46;
+  --mood-sweet: #7d5a92;
+  --mood-confident: #3a4b5c;
+  --mood-romance: #c46c6c;
+
+  /* ฟอนต์ */
+  --font-display: "Cormorant Garamond", "Noto Serif Thai", "Times New Roman", serif;
+  --font-serif-th: "Noto Serif Thai", "Cormorant Garamond", serif;
+  --font-body: "Noto Sans Thai", "Helvetica Neue", Arial, sans-serif;
+
+  /* Spacing (เว้นระยะเยอะ) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+  --space-7: 9rem;
+
+  --container: 72rem;
+  --radius: 2px;
+  --ease: 0.25s ease;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+h1 { font-size: clamp(2.6rem, 6vw, 4.5rem); font-weight: 400; line-height: 1.12; }
+h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); }
+h3 { font-size: 1.4rem; font-family: var(--font-serif-th); font-weight: 500; }
+
+p {
+  margin: 0 0 var(--space-3);
+  max-width: 38rem;
+  color: var(--ink-soft);
+}
+
+:focus-visible {
+  outline: 1px solid var(--bronze);
+  outline-offset: 4px;
+}
+
+::selection {
+  background: var(--sand);
+}
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+.section {
+  padding-block: var(--space-6);
+}
+
+.section--cream {
+  background: var(--cream);
+}
+
+.section--sand {
+  background: var(--sand);
+}
+
+.section-head {
+  margin-bottom: var(--space-5);
+}
+
+.section-head--center {
+  text-align: center;
+}
+
+.section-head--center p {
+  margin-inline: auto;
+}
+
+/* เส้นทองสั้นใต้หัวข้อ */
+.section-title::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 1px;
+  margin-top: var(--space-2);
+  background: var(--gold);
+}
+
+.section-head--center .section-title::after {
+  margin-inline: auto;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: var(--space-5) 0;
+}
+
+/* ---------- Header / Nav ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(252, 250, 246, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-2);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.nav {
+  display: flex;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.nav a {
+  padding-block: 0.25rem;
+  border-bottom: 1px solid transparent;
+  color: var(--ink-soft);
+  transition: color var(--ease), border-color var(--ease);
+}
+
+.nav a:hover,
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  border-color: var(--gold);
+}
+
+/* ---------- Buttons (เส้นบาง สีเข้มนุ่มตา) ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 2.25rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--line-strong);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-align: center;
+  cursor: pointer;
+  transition: background var(--ease), color var(--ease), border-color var(--ease);
+}
+
+.btn:hover {
+  background: var(--line-strong);
+  color: var(--ivory);
+}
+
+.btn--solid {
+  background: var(--line-strong);
+  color: var(--ivory);
+}
+
+.btn--solid:hover {
+  background: var(--bronze);
+  border-color: var(--bronze);
+}
+
+.btn--gold {
+  border-color: var(--bronze);
+  color: var(--bronze);
+}
+
+.btn--gold:hover {
+  background: var(--bronze);
+  color: var(--ivory);
+}
+
+.btn--block {
+  display: block;
+  width: 100%;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding-block: var(--space-7) var(--space-6);
+  background: linear-gradient(180deg, var(--cream) 0%, var(--ivory) 100%);
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-4);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.hero__media img {
+  width: 100%;
+  border: 1px solid var(--line);
+  padding: var(--space-2);
+  background: var(--ivory);
+}
+
+/* ---------- Mood: จุดสีเล็กๆ เท่านั้น ---------- */
+[data-mood="fresh"] { --mood: var(--mood-fresh); }
+[data-mood="sweet"] { --mood: var(--mood-sweet); }
+[data-mood="confident"] { --mood: var(--mood-confident); }
+[data-mood="romance"] { --mood: var(--mood-romance); }
+
+.mood-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--mood, var(--gold));
+  vertical-align: middle;
+}
+
+.mood-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+/* เส้นสั้นสีตาม mood ใต้หัวข้อ (ใช้กับ .mood-title) */
+.mood-title::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 2px;
+  margin-top: var(--space-1);
+  background: var(--mood, var(--gold));
+}
+
+/* ---------- Filters ---------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color var(--ease), color var(--ease);
+}
+
+.chip:hover,
+.chip.is-active {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+/* ---------- Product grid / card ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: var(--space-4);
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color var(--ease);
+}
+
+.product-card:hover {
+  border-color: var(--bronze);
+}
+
+.product-card__media {
+  aspect-ratio: 4 / 5;
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.product-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--space-3);
+}
+
+.product-card__name {
+  margin-bottom: var(--space-1);
+  font-size: 1.15rem;
+}
+
+.product-card__meta {
+  margin-bottom: var(--space-2);
+  font-size: 0.85rem;
+  color: var(--beige-deep);
+}
+
+.product-card__desc {
+  flex: 1;
+  margin-bottom: var(--space-3);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.product-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--line);
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--bronze);
+}
+
+.price small {
+  margin-left: 0.25rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--ink-soft);
+}
+
+/* ---------- Feature / info blocks ---------- */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-5);
+}
+
+.feature {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line-strong);
+}
+
+.feature p {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* ---------- Forms (เผื่อใช้ช่องติดต่อ/สั่งซื้อ) ---------- */
+.field {
+  display: block;
+  width: 100%;
+  margin-bottom: var(--space-3);
+  padding: 0.85rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  border-radius: 0;
+}
+
+.field::placeholder {
+  color: var(--beige-deep);
+}
+
+.field:focus {
+  outline: none;
+  border-bottom-color: var(--bronze);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  padding-block: var(--space-5);
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+/* ---------- Utilities ---------- */
+.text-center { text-align: center; }
+.text-gold { color: var(--bronze); }
+.text-muted { color: var(--ink-soft); }
+.mt-4 { margin-top: var(--space-4); }
+.mb-4 { margin-bottom: var(--space-4); }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .hero {
+    padding-block: var(--space-6) var(--space-5);
+  }
+
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 0.97rem;
+  }
+
+  .container {
+    padding-inline: var(--space-2);
+  }
+
+  .site-header__inner {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .nav {
+    gap: var(--space-3);
+    font-size: 0.9rem;
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .section-head {
+    margin-bottom: var(--space-4);
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+  }
+
+  .product-card__body {
+    padding: var(--space-2);
+  }
+
+  .product-card__desc {
+    display: none;
+  }
+
+  .product-card__foot {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+
+  .site-footer__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* ==========================================================================
+   Additions: index.html + product.html
+   ========================================================================== */
+
+/* Hero เต็มจอ (ตัวอักษรกึ่งกลาง ไม่มีรูป) */
+.hero--full {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  min-height: calc(100svh - 4.5rem);
+  padding-block: var(--space-6);
+}
+
+.hero--full .hero__inner {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.hero--full h1 {
+  max-width: 20ch;
+  margin-bottom: var(--space-3);
+  font-family: var(--font-serif-th), var(--font-display);
+  font-size: clamp(2rem, 4.8vw, 3.6rem);
+  line-height: 1.4;
+}
+
+.hero--full p {
+  margin-inline: auto;
+}
+
+.hero--full .hero__actions {
+  justify-content: center;
+}
+
+/* การ์ด mood (หน้าแรก) */
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+.mood-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-4) var(--space-3);
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color var(--ease);
+}
+
+.mood-card:hover,
+.mood-card:focus-visible {
+  border-color: var(--mood, var(--bronze));
+}
+
+.mood-card__icon {
+  margin-bottom: var(--space-3);
+}
+
+.mood-card .mood-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.mood-card h3 {
+  margin-bottom: var(--space-2);
+}
+
+.mood-card p {
+  flex: 1;
+  margin-bottom: var(--space-3);
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+
+.mood-card__cta {
+  font-size: 0.9rem;
+  color: var(--bronze);
+}
+
+/* หัวหน้าภายใน (product.html) */
+.page-head {
+  padding-block: var(--space-6) var(--space-4);
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+}
+
+.page-head h1 {
+  font-family: var(--font-serif-th), var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.35;
+}
+
+.page-head p {
+  margin-bottom: 0;
+}
+
+.section--tight-top {
+  padding-top: var(--space-5);
+}
+
+@media (max-width: 1000px) {
+  .mood-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .hero--full {
+    padding-block: var(--space-5);
+  }
+
+  .mood-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mood-card {
+    padding: var(--space-3) var(--space-2);
+  }
+
+  .page-head {
+    padding-block: var(--space-5) var(--space-3);
+  }
+}
+
+/* ==========================================================================
+   Additions: order.html, thankyou.html, admin.html
+   ========================================================================== */
+
+/* ฟอร์ม */
+.form {
+  max-width: 36rem;
+}
+
+.form-group {
+  margin-bottom: var(--space-4);
+}
+
+.form-group .field {
+  margin-bottom: 0;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.15rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+textarea.field {
+  min-height: 6rem;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.link-quiet {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+  transition: color var(--ease), border-color var(--ease);
+}
+
+.link-quiet:hover {
+  color: var(--ink);
+  border-color: var(--gold);
+}
+
+/* หน้าขอบคุณ */
+.message-page {
+  display: flex;
+  align-items: center;
+  min-height: 70vh;
+  padding-block: var(--space-6);
+  text-align: center;
+}
+
+.message-page h1 {
+  font-family: var(--font-serif-th), var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  line-height: 1.4;
+}
+
+.message-page p {
+  margin-inline: auto;
+  margin-bottom: var(--space-4);
+}
+
+/* ตาราง (admin) */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: var(--ivory);
+}
+
+.data-table {
+  width: 100%;
+  min-width: 46rem;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  color: var(--ink-soft);
+}
+
+.data-table thead th {
+  background: var(--cream);
+  border-bottom: 1px solid var(--line-strong);
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  .message-page {
+    min-height: 60vh;
+    padding-block: var(--space-5);
+  }
+}
